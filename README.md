@@ -3,9 +3,7 @@ Currently generating pattern following the syntax of [Haptica](https://github.co
 ![](https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623300841647.png)  
 The pattern is generated considering 3 Thresholding limits, resulting in 4 regions for '-','.','o' and 'O' , denoting __No__, __Light__, __Medium__ and __Heavy__ haptic feedback respectively.   
   
-Parameter list for __*getHapticaPattern()*__    
-
-file,thr1=25,thr2=50,thr3=75,slot=0.1,plot=True
+Parameter list for __*getHapticaPattern()*__
 
 | Parameter | Type | Default Value | Description |
 | --- | -- | ----------- |----|
