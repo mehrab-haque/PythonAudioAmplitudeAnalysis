@@ -1,4 +1,4 @@
-#Python script for generating Haptic pattern for an audio track  
+# Python script for generating Haptic pattern for an audio track  
   
 Currently generating pattern following the syntax of [Haptica](https://github.com/efremidze/Haptica)
   
