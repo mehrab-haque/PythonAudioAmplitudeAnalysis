@@ -27,11 +27,11 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,plot=True):
     plt.axhline(lim3, color='r')
 
     plt.text(duration*1.02, (lim1+lim2)/2, '.', style='italic',
-            bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 5})
+            bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 1})
     plt.text(duration * 1.02, (lim2 + lim3) / 2, 'o', style='italic',
-             bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 5})
+             bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 1})
     plt.text(duration * 1.02, (lim3 + max) / 2, 'O', style='italic',
-             bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 5})
+             bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 1})
 
     #Generating haptica pattern
     pattern=""
