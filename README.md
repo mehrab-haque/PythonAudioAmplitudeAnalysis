@@ -2,7 +2,9 @@ __Python script for generating Haptic pattern for an audio track__
   
 Currently generating pattern following the syntax of [Haptica](https://github.com/efremidze/Haptica)
   
-![](https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623300841647.png)  
+![alt text][logo]
+
+[logo]: https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623300841647.png "Logo Title Text 2"
   
 The pattern is generated considering 3 Thresholding limits, resulting in 4 regions for '-','.','o' and 'O' , denoting __No__, __Light__, __Medium__ and __Heavy__ haptic feedback respectively.   
   
