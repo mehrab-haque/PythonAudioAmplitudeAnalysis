@@ -4,7 +4,7 @@ import librosa
 import librosa.display
 
 
-def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,plot=True):
+def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,contMinLength = 20,plot=True):
     #Load audio data
     audio, sr = librosa.load(file)
     sample_duration = 1 / sr
@@ -34,6 +34,7 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,plot=True):
              bbox={'facecolor': 'red', 'alpha': 0.2, 'pad': 1})
 
     #Generating haptica pattern
+    isPattern=False
     pattern=""
     for i in range(int(duration/slot)):
         lb=int(i*slot/sample_duration)
@@ -48,15 +49,33 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,plot=True):
             elif currMax>=lim1:
                 currPattern='.'
             pattern+=currPattern
+
+    #Generating continuous feedback
+    contList = []
+    for i in range(int(duration/slot)):
+        lb=int(i*slot/sample_duration)
+        ub=int((i+1)*slot/sample_duration)
+        if lb >= 0 and ub <= len(audio) and (len(contList)==0 or contList[len(contList)-1][1]/slot<i):
+            contRef = np.amax(audio[lb:ub])
+            for j in range(i+1,int(duration / slot)):
+                lbNew = int(j * slot / sample_duration)
+                ubNew = int((j + 1) * slot / sample_duration)
+                if lbNew >= 0 and ubNew <= len(audio):
+                    currMax = np.amax(audio[lbNew:ubNew])
+                    if abs(contRef-currMax)/contRef>contTolerance/100:
+                        if (j-i+1)*slot/duration>=contMinLength/100:
+                            contList.append([i*slot,j*slot,contRef])
+                        break
     plt.title("Haptica Pattern : "+pattern)
     plt.xlabel("Time (seconds)")
     plt.ylabel("Amplitude (Mapped between 0~1)")
     if plot:
         plt.show()
-    return pattern
+    return pattern,contList
 
-pattern=getHapticaPattern(file="ignition-start-3.mp3")
+pattern,contList=getHapticaPattern(file="ignition-start-2.mp3",plot=True)
 print(pattern)
+print(contList)
 
 
 
