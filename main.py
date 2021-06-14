@@ -79,7 +79,7 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
         plt.show()
     return pattern,contList
 
-pattern,contList=getHapticaPattern(file="ignition-start-2.mp3",plot=True)
+pattern,contList=getHapticaPattern(file="ignition-start-1.mp3",plot=True)
 print(pattern)
 print(contList)
 
