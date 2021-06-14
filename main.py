@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import numpy as np
 import librosa
 import librosa.display
@@ -66,6 +67,11 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
                         if (j-i+1)*slot/duration>=contMinLength/100:
                             contList.append([i*slot,j*slot,contRef])
                         break
+
+    for cont in contList:
+        rect = patches.Rectangle((cont[0],0), cont[1]-cont[0],cont[2], linewidth=1, edgecolor='g', facecolor='g',alpha=0.2)
+        plt.gca().add_patch(rect)
+
     plt.title("Haptica Pattern : "+pattern)
     plt.xlabel("Time (seconds)")
     plt.ylabel("Amplitude (Mapped between 0~1)")

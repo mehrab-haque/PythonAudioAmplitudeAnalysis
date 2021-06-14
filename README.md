@@ -4,9 +4,9 @@ Currently generating pattern following the syntax of [Haptica](https://github.co
   
 ![alt text][logo]
 
-[logo]: https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623300841647.png "Logo Title Text 2"
+[logo]: https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623669609554.png "Logo Title Text 2"
   
-The pattern is generated considering 3 Thresholding limits, resulting in 4 regions for '-','.','o' and 'O' , denoting __No__, __Light__, __Medium__ and __Heavy__ haptic feedback respectively.   
+The pattern is generated considering 3 Thresholding limits, resulting in 4 regions for '-','.','o' and 'O' , denoting __No__, __Light__, __Medium__ and __Heavy__ haptic feedback respectively.   The green regions correspond to continuous haptic feedback (as mentioned in ios CoreHaptics documentation) duration and amplitude.
   
 Parameter list for __*getHapticaPattern()*__
 
@@ -17,4 +17,6 @@ Parameter list for __*getHapticaPattern()*__
 |thr2|float|50|2nd threshold limit in percentage, denoted by blue line in the graph|
 |thr3|float|75|3rd threshold limit in percentage, denoted by red line in the graph|
 |slot|float|0.1|duration of a single pattern character|
+|contTolerance|float|40|maximum neglegible fluctuation in percentage allowed for continuous feedback|
+|contMinLength|float|20|minimum duration in percentage allowed for continuous feedback|
 |plot|boolean|True|plotting and showing the graph or not|
