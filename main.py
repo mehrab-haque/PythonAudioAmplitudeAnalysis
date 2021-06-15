@@ -58,6 +58,7 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
         ub=int((i+1)*slot/sample_duration)
         if lb >= 0 and ub <= len(audio) and (len(contList)==0 or contList[len(contList)-1][1]/slot<i):
             contRef = np.amax(audio[lb:ub])
+            currMax=0
             for j in range(i+1,int(duration / slot)):
                 lbNew = int(j * slot / sample_duration)
                 ubNew = int((j + 1) * slot / sample_duration)
@@ -67,6 +68,8 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
                         if (j-i+1)*slot/duration>=contMinLength/100:
                             contList.append([i*slot,j*slot,contRef])
                         break
+                elif abs(contRef-currMax)/contRef>contTolerance/100 and ubNew > len(audio) and (j-i+1)*slot/duration>=contMinLength/100:
+                    contList.append([i * slot, j * slot, contRef])
 
     for cont in contList:
         rect = patches.Rectangle((cont[0],0), cont[1]-cont[0],cont[2], linewidth=1, edgecolor='g', facecolor='g',alpha=0.2)
@@ -77,9 +80,16 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
     plt.ylabel("Amplitude (Mapped between 0~1)")
     if plot:
         plt.show()
-    return pattern,contList
+    formattedContList=[]
+    maxAmpl=contList[0][2]
+    for i in range(1,len(contList)):
+        if(contList[i][2]>maxAmpl):
+            maxAmpl=contList[i][2]
+    for cont in contList:
+        formattedContList.append([round(cont[0],1),round(cont[1]-cont[0],1),round(cont[2]/maxAmpl,1)])
+    return pattern,formattedContList
 
-pattern,contList=getHapticaPattern(file="ignition-start-1.mp3",plot=True)
+pattern,contList=getHapticaPattern(file="ignition-start-4.mp3",contTolerance=40,contMinLength=10)
 print(pattern)
 print(contList)
 
