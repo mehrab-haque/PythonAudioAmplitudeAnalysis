@@ -4,7 +4,6 @@ import numpy as np
 import librosa
 import librosa.display
 
-
 def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,contMinLength = 20,plot=True):
     #Load audio data
     audio, sr = librosa.load(file)
@@ -79,6 +78,7 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
     plt.xlabel("Time (seconds)")
     plt.ylabel("Amplitude (Mapped between 0~1)")
     if plot:
+        plt.gcf().canvas.set_window_title(file)
         plt.show()
     formattedContList=[]
     maxAmpl=contList[0][2]
@@ -89,9 +89,9 @@ def getHapticaPattern(file,thr1=25,thr2=50,thr3=75,slot=0.1,contTolerance = 40,c
         formattedContList.append([round(cont[0],1),round(cont[1]-cont[0],1),round(cont[2]/maxAmpl,1)])
     return pattern,formattedContList
 
-pattern,contList=getHapticaPattern(file="ignition-start-4.mp3",contTolerance=40,contMinLength=10)
-print(pattern)
-print(contList)
+#pattern,contList=getHapticaPattern(file="ignition-start-4.mp3",contTolerance=40,contMinLength=10)
+#print(pattern)
+#print(contList)
 
 
 

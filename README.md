@@ -11,7 +11,13 @@ Currently generating pattern following the syntax of [Haptica](https://github.co
 [logo1]: https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623669609554.png "Logo Title Text 2"
   
 The pattern is generated considering 3 Thresholding limits, resulting in 4 regions for '-','.','o' and 'O' , denoting __No__, __Light__, __Medium__ and __Heavy__ haptic feedback respectively.   The green regions correspond to continuous haptic feedback (as mentioned in ios CoreHaptics documentation) duration and amplitude.
-  
+
+Analyzer GUI
+
+![alt text][logo2]
+
+[logo2]: https://buet-edu-1.s3.amazonaws.com/auto_upload/0RMFi9mrPNe7mol2JwcZAf40F3n2/1623746967595.png "Logo Title Text 2"
+
 Parameter list for __*getHapticaPattern()*__
 
 | Parameter | Type | Default Value | Description |
